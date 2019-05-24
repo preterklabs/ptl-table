@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Table from "./lib";
+import "./index.scss";
 
 ReactDOM.render(
   <Table
+    className="table"
+    style={{ color: "red" }}
+    striped={false}
+    responsive
+    bordered={true}
     data={[
       {
         key: 0,
@@ -13,6 +19,12 @@ ReactDOM.render(
       },
       {
         key: 1,
+        name: "Priscilla Agboado",
+        age: 20,
+        company: "WTBTS"
+      },
+      {
+        key: 3,
         name: "Priscilla Agboado",
         age: 20,
         company: "WTBTS"
