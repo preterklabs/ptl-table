@@ -33,7 +33,7 @@ export default class TableOne extends Component {
         title: "Operations",
         dataIndex: "operations",
         key: "operations",
-        align: "center",
+        horizontalAlign: "center",
         render: (text, record) => (
           <button onClick={e => this.onDelete(record.key, e)}>Delete</button>
         )

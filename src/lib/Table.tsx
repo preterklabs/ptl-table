@@ -6,11 +6,15 @@ export interface TableColumnProps {
   title: string;
   dataIndex: string;
   key: string;
-  align: "left" | "center" | "right";
+  horizontalAlign: "left" | "center" | "right";
+  verticalAlign: "top" | "center" | "bottom";
+
   render(text: any, record: object): React.ReactNode;
 }
 export interface TableDataProps {
   key: string | number;
+  horizontalAlign: "left" | "center" | "right";
+  verticalAlign: "top" | "center" | "bottom";
   [propName: string]: any;
 }
 export interface TableProps {
@@ -98,7 +102,11 @@ class Table extends React.Component<TableProps, TableState> {
           <thead>
             <tr>
               {columns.map(column => (
-                <th scope="col" key={column.key} align={column.align || "left"}>
+                <th
+                  scope="col"
+                  key={column.key}
+                  align={column.horizontalAlign || "left"}
+                >
                   {column.title}
                 </th>
               ))}
