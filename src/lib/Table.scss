@@ -1,0 +1,68 @@
+.ptl-table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+}
+.ptl-table td,
+.ptl-table th {
+  vertical-align: top;
+  padding: 0.75rem;
+}
+
+.ptl-table-bordered {
+  border: 1px solid #454d55;
+}
+
+.ptl-table-bordered th,
+.ptl-table-bordered td {
+  border: 1px solid #454d55;
+}
+
+.ptl-table-bordered thead th,
+.ptl-table-bordered thead td {
+  border-bottom-width: 2px;
+}
+
+.ptl-table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+// .ptl-table-dark.table-striped tbody tr:nth-of-type(odd) {
+//   background-color: rgba(255, 255, 255, 0.05);
+// }
+.ptl-table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 0;
+}
+
+.ptl-table-bg-default {
+  background-color: #fff;
+}
+.ptl-table-bg-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+.ptl-table-bg-light {
+  background-color: #f8f9fa;
+}
+.ptl-table-bg-info {
+  background-color: #17a2b8;
+}
+.ptl-table-bg-warning {
+  background-color: #ffc107;
+}
+.ptl-table-bg-danger {
+  background-color: #dc3545;
+}
+.ptl-table-bg-success {
+  background-color: #28a745;
+}
+.ptl-table-bg-secondary {
+  background-color: #6c757d;
+}
+.ptl-table-bg-primary {
+  background-color: #007bff;
+}

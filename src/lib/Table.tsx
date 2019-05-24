@@ -14,6 +14,31 @@ interface TableDataProps {
 interface TableProps {
   data: Array<TableDataProps>;
   columns: Array<TableColumnProps>;
+  style?: React.CSSProperties;
+  className?: string;
+  bordered?: boolean;
+  responsive?: boolean;
+  striped?: boolean;
+  backgroundColor?:
+    | "default"
+    | "dark"
+    | "light"
+    | "info"
+    | "warning"
+    | "danger"
+    | "success"
+    | "secondary"
+    | "primary";
+  color?:
+    | "default"
+    | "dark"
+    | "light"
+    | "info"
+    | "warning"
+    | "danger"
+    | "success"
+    | "secondary"
+    | "primary";
 }
 
 interface TableState {}
@@ -26,24 +51,54 @@ class Table extends React.Component<TableProps, TableState> {
 
   static propTypes = {
     data: PropTypes.array.isRequired,
-    columns: PropTypes.array.isRequired
+    columns: PropTypes.array.isRequired,
+    bordered: PropTypes.bool,
+    striped: PropTypes.bool,
+    style: PropTypes.object,
+    responsive: PropTypes.bool,
+    backgroundColor: PropTypes.string,
+    color: PropTypes.string
   };
 
   static defaultProps = {
     data: [],
-    columns: []
+    columns: [],
+    bordered: false,
+    striped: false,
+    responsive: false,
+    backgroundColor: "default",
+    color: "default"
   };
 
   render() {
-    const { data, columns } = this.props;
+    const {
+      data,
+      columns,
+      bordered,
+      striped,
+      style,
+      responsive,
+      className,
+      backgroundColor
+    } = this.props;
 
+    const classNames = [
+      "ptl-table",
+      bordered ? "ptl-table-bordered" : null,
+      striped ? "ptl-table-striped" : null,
+      responsive ? "ptl-table-responsive" : null,
+      className,
+      backgroundColor ? `ptl-table-bg-${backgroundColor}` : ""
+    ];
     return (
-      <table>
+      <table className={classNames.join(" ")} style={style}>
         {columns.length > 0 && (
           <thead>
             <tr>
               {columns.map(column => (
-                <th key={column.key}>{column.title}</th>
+                <th scope="col" key={column.key}>
+                  {column.title}
+                </th>
               ))}
             </tr>
           </thead>
