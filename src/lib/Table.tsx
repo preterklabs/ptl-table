@@ -19,6 +19,26 @@ interface TableProps {
   bordered?: boolean;
   responsive?: boolean;
   striped?: boolean;
+  backgroundColor?:
+    | "default"
+    | "dark"
+    | "light"
+    | "info"
+    | "warning"
+    | "danger"
+    | "success"
+    | "secondary"
+    | "primary";
+  color?:
+    | "default"
+    | "dark"
+    | "light"
+    | "info"
+    | "warning"
+    | "danger"
+    | "success"
+    | "secondary"
+    | "primary";
 }
 
 interface TableState {}
@@ -35,7 +55,9 @@ class Table extends React.Component<TableProps, TableState> {
     bordered: PropTypes.bool,
     striped: PropTypes.bool,
     style: PropTypes.object,
-    responsive: PropTypes.bool
+    responsive: PropTypes.bool,
+    backgroundColor: PropTypes.string,
+    color: PropTypes.string
   };
 
   static defaultProps = {
@@ -43,7 +65,9 @@ class Table extends React.Component<TableProps, TableState> {
     columns: [],
     bordered: false,
     striped: false,
-    responsive: false
+    responsive: false,
+    backgroundColor: "default",
+    color: "default"
   };
 
   render() {
@@ -54,7 +78,8 @@ class Table extends React.Component<TableProps, TableState> {
       striped,
       style,
       responsive,
-      className
+      className,
+      backgroundColor
     } = this.props;
 
     const classNames = [
@@ -62,7 +87,8 @@ class Table extends React.Component<TableProps, TableState> {
       bordered ? "ptl-table-bordered" : null,
       striped ? "ptl-table-striped" : null,
       responsive ? "ptl-table-responsive" : null,
-      className
+      className,
+      backgroundColor ? `ptl-table-bg-${backgroundColor}` : ""
     ];
     return (
       <table className={classNames.join(" ")} style={style}>
@@ -70,7 +96,9 @@ class Table extends React.Component<TableProps, TableState> {
           <thead>
             <tr>
               {columns.map(column => (
-                <th key={column.key}>{column.title}</th>
+                <th scope="col" key={column.key}>
+                  {column.title}
+                </th>
               ))}
             </tr>
           </thead>

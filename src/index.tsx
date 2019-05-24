@@ -5,11 +5,12 @@ import "./index.scss";
 
 ReactDOM.render(
   <Table
-    className="table"
-    style={{ color: "red" }}
+    // className="table"
+    // style={{ color: "red" }}
     striped={false}
-    responsive
-    bordered={true}
+    backgroundColor="dark"
+    // responsive
+    bordered
     data={[
       {
         key: 0,
