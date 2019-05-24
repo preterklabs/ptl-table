@@ -2,16 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Table.scss";
 
-interface TableColumnProps {
+export interface TableColumnProps {
   title: string;
   dataIndex: string;
   key: string;
+  align: "left" | "center" | "right";
+  render(text: any, record: object): React.ReactNode;
 }
-interface TableDataProps {
+export interface TableDataProps {
   key: string | number;
   [propName: string]: any;
 }
-interface TableProps {
+export interface TableProps {
   data: Array<TableDataProps>;
   columns: Array<TableColumnProps>;
   style?: React.CSSProperties;
@@ -96,7 +98,7 @@ class Table extends React.Component<TableProps, TableState> {
           <thead>
             <tr>
               {columns.map(column => (
-                <th scope="col" key={column.key}>
+                <th scope="col" key={column.key} align={column.align || "left"}>
                   {column.title}
                 </th>
               ))}
@@ -108,7 +110,13 @@ class Table extends React.Component<TableProps, TableState> {
             {data.map((dt, dataIdx) => (
               <tr key={dt.key}>
                 {columns.map((col, colIdx) => (
-                  <td key={colIdx}>{dt[col.dataIndex]}</td>
+                  <React.Fragment key={colIdx}>
+                    {Object.keys(col).indexOf("render") > -1 ? (
+                      <td>{col.render(dt[col.dataIndex], dt)}</td>
+                    ) : (
+                      <td>{dt[col.dataIndex]}</td>
+                    )}
+                  </React.Fragment>
                 ))}
               </tr>
             ))}
